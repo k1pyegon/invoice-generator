@@ -7,7 +7,7 @@ export const YourDetailsForm = () => (
     <p className="text-2xl font-semibold pb-3">Your Details (From)</p>
     <CustomTextInput
       label="Email"
-      placeholder="e.g. pranav@prolab.sh"
+      placeholder="e.g. billing@barnview.org"
       variableName="yourEmail"
     />
     <p className="pb-10 pt-3 text-xs font-medium text-neutral-500">

@@ -17,32 +17,29 @@ export const metadata: Metadata = {
       "en-US": "/en-US",
     },
   },
-  title:
-    "Free Invoice Generator: Create & Send Professional Invoices in Minutes",
+  title: "Barnview Invoice Generator: Create & Send Professional Invoices",
   description:
-    "Get paid on time with our free invoice maker. Create professional invoices & get them to clients instantly.",
+    "Barnview's invoice generator. Create professional invoices & get them to clients instantly.",
   keywords: [
     "invoice generator",
-    "free invoice template",
+    "invoice template",
     "invoice maker",
     "online invoice",
     "create invoice",
+    "Barnview",
   ],
   robots: "index, follow",
   openGraph: {
-    title:
-      "Free Invoice Generator: Create & Send Professional Invoices in Minutes",
+    title: "Barnview Invoice Generator: Create & Send Professional Invoices",
     description:
-      "Get paid on time with our free invoice maker. Create professional invoices & get them to clients instantly.",
+      "Barnview's invoice generator. Create professional invoices & get them to clients instantly.",
     url: process.env.NEXT_PUBLIC_URL,
     type: "website",
     images: "/og-image.jpeg",
-    siteName: "Invoice Generator",
+    siteName: "Barnview",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@ThatsPranav",
-    creator: "@ThatsPranav",
   },
 };
 
