@@ -6,23 +6,23 @@ export const PaymentDetailsForm = () => (
     <p className="text-2xl font-semibold pb-3">Payment Details</p>
     <CustomTextInput
       label="Bank name"
-      placeholder="HSBC"
+      placeholder="Equity Bank"
       variableName="bankName"
     />
     <CustomTextInput
       label="Account number"
-      placeholder="8920804195"
+      placeholder="1170123456789"
       variableName="accountNumber"
     />
     <CustomTextInput
       label="Account Name"
-      placeholder="Pranav"
+      placeholder="Wanjiru Otieno"
       variableName="accountName"
     />
     <CustomTextInput
-      label="IFSC code"
-      placeholder="HSBC0560002"
-      variableName="ifscCode"
+      label="Branch"
+      placeholder="Kimathi Street Branch"
+      variableName="branch"
     />
     <CustomTextInput
       label="Routing number"
@@ -31,7 +31,7 @@ export const PaymentDetailsForm = () => (
     />
     <CustomNumberInput
       label="Swift code"
-      placeholder="HSBCINAA123"
+      placeholder="EQBLKENA"
       variableName="swiftCode"
     />
   </div>

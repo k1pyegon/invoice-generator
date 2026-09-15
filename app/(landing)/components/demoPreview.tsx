@@ -41,7 +41,7 @@ const defaultValue = {
     accountName: "AGRISYNC LAB",
     routingCode: "123456",
     swiftCode: "SAMPLEXX123",
-    ifscCode: "",
+    branch: "",
     currency: "USD",
   },
   invoiceTerms: {

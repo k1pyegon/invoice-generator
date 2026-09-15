@@ -16,38 +16,38 @@ export const CompanyDetailsForm = () => (
     <p className="pb-2 text-sm font-medium text-neutral-500">Billing details</p>
     <CustomTextInput
       label="Company name"
-      placeholder="Acme Inc"
+      placeholder="Jambo Traders Ltd"
       variableName="companyName"
     />
     <ImageInput label="Logo" variableName="companyLogo" />
     <CustomTextInput
       label="Address"
-      placeholder="Whitefield Circle,12"
+      placeholder="Kimathi Street, 12"
       variableName="companyAddress"
     />
     <CustomTextInput
       label="City"
-      placeholder="Bangalore"
+      placeholder="Mombasa"
       variableName="companyCity"
     />
     <CustomTextInput
       label="State"
-      placeholder="Karnataka"
+      placeholder="Mombasa County"
       variableName="companyState"
     />
     <CustomNumberInput
       label="Zip"
-      placeholder="560066"
+      placeholder="80100"
       variableName="companyZip"
     />
     <CustomTextInput
       label="Country"
-      placeholder="India"
+      placeholder="Kenya"
       variableName="companyCountry"
     />
     <CustomTextInput
       label="Tax ID"
-      placeholder="GSTIN 1234"
+      placeholder="P051987654X"
       variableName="companyTaxId"
     />
   </div>

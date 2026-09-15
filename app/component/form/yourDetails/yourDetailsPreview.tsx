@@ -24,7 +24,7 @@ export const YourDetailsPreview: React.FC<YourDetails> = ({
       )}
     </div>
     {yourName ? (
-      <p className="text-2xl font-medium">{yourName}</p>
+      <p className="text-sm font-medium">{yourName}</p>
     ) : (
       <div className="rounded-md bg-neutral-100 h-5 w-5/6  animate-pulse mb-4" />
     )}

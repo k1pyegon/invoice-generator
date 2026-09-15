@@ -16,38 +16,38 @@ export const YourDetailsForm = () => (
     <p className="pb-2 text-sm font-medium text-neutral-500">Billing details</p>
     <CustomTextInput
       label="Your Name"
-      placeholder="Pranav"
+      placeholder="Wanjiru Otieno"
       variableName="yourName"
     />
     <ImageInput label="Logo" variableName="yourLogo" />
     <CustomTextInput
       label="Address"
-      placeholder="Whitefield Circle,12"
+      placeholder="Moi Avenue, 45"
       variableName="yourAddress"
     />
     <CustomTextInput
       label="City"
-      placeholder="Bangalore"
+      placeholder="Nairobi"
       variableName="yourCity"
     />
     <CustomTextInput
       label="State"
-      placeholder="Karnataka"
+      placeholder="Nairobi County"
       variableName="yourState"
     />
     <CustomNumberInput
       label="Zip"
-      placeholder="560066"
+      placeholder="00100"
       variableName="yourZip"
     />
     <CustomTextInput
       label="Country"
-      placeholder="India"
+      placeholder="Kenya"
       variableName="yourCountry"
     />
     <CustomTextInput
       label="Tax ID"
-      placeholder="GSTIN 1234"
+      placeholder="P051234567X"
       variableName="yourTaxId"
     />
   </div>
