@@ -2,131 +2,127 @@
 "use client";
 
 import {
-  CodeXml,
-  Download,
   Hourglass,
-  Infinity,
   NotebookText,
-  Plus,
   Receipt,
   Rocket,
+  ShieldCheck,
+  Users,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import DemoPreview from "./components/demoPreview";
 
+const features = [
+  {
+    icon: Rocket,
+    title: "Fast & Easy",
+    description:
+      "Fill in the blanks and generate a professional invoice in seconds.",
+  },
+  {
+    icon: Users,
+    title: "Team-Ready",
+    description:
+      "Anyone on the team can generate invoices without learning new tools.",
+  },
+  {
+    icon: NotebookText,
+    title: "Consistent Templates",
+    description: "Every invoice follows the same Barnview branding automatically.",
+  },
+  {
+    icon: Receipt,
+    title: "Get Paid Faster",
+    description:
+      "Share invoices with secure payment details for faster client payments.",
+  },
+  {
+    icon: Hourglass,
+    title: "Save Time",
+    description: "Skip spreadsheets and manual formatting for every invoice.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Internal Use Only",
+    description: "Built for the Barnview team — kept off the public web.",
+  },
+];
+
 const Home = () => {
   return (
-    <div className="bg-[#f7f7f7] flex justify-center items-center overflow-x-hidden">
-      <div className="border-l border-r max-w-4xl w-full mx-auto border-dashed h-full flex justify-center flex-col border-gray-300">
-        <div className="justify-center items-center h-full flex flex-col my-10">
-          <div className="border-t border-dashed border-gray-300 w-full mx-auto py-10 flex justify-center items-center relative">
-            <Plus className="text-orange-500 group-hover:text-orange-500 w-7 h-7 absolute top-0 -translate-x-1/2 -translate-y-1/2 left-0" />
+    <div className="relative bg-[#fbf8f5] overflow-x-hidden">
+      {/* organic background blobs */}
+      <div className="pointer-events-none absolute -top-32 -left-32 w-[26rem] h-[26rem] rounded-full bg-gradient-to-br from-orange-200 to-pink-200 blur-3xl opacity-60" />
+      <div className="pointer-events-none absolute top-64 -right-40 w-[30rem] h-[30rem] rounded-full bg-gradient-to-br from-pink-200 to-orange-100 blur-3xl opacity-50" />
+      <div className="pointer-events-none absolute bottom-0 left-1/3 w-[24rem] h-[24rem] rounded-full bg-gradient-to-br from-orange-100 to-pink-100 blur-3xl opacity-40" />
+
+      <div className="relative max-w-4xl w-full mx-auto flex flex-col items-center px-4">
+        {/* Hero */}
+        <div className="flex flex-col items-center text-center pt-16 pb-14">
+          <div className="rounded-[2rem] p-2 bg-white/70 shadow-sm mb-8">
             <Image
               src="/android-chrome-512x512.png"
-              width={100}
-              height={100}
-              className="rounded-lg"
+              width={88}
+              height={88}
+              className="rounded-3xl"
               alt="logo"
             />
           </div>
-          <div className="relative group">
-            <h1 className="font-semibold text-3xl md:text-7xl text-center w-full border-t border-b py-6 border-dashed text-balance px-4 text-black border-gray-300">
-              <span className="">Get Paid Faster with </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-500 to-pink-400">
-                Barnview Invoice Generator
-              </span>
-            </h1>
-          </div>
-          <div className="pt-10 pb-11 flex gap-3 items-center mx-auto border-gray-300 border-b w-full justify-center border-dashed relative">
-            <Plus className="text-orange-500 group-hover:text-orange-500 w-7 h-7 absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2" />
-            <Link
-              href="/new"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring font-medium disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-br from-orange-500 to-pink-400 text-white hover:bg-black/90 px-6 py-2 text-lg"
-            >
-              Generate Invoice
-            </Link>
-          </div>
+          <h1 className="font-semibold text-3xl md:text-6xl text-balance text-black leading-tight">
+            <span>Get Paid Faster with </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-orange-500 to-pink-400">
+              Barnview Invoice Generator
+            </span>
+          </h1>
+          <p className="mt-5 text-neutral-500 text-lg max-w-xl text-balance">
+            The internal tool for creating and sending Barnview invoices —
+            quick, consistent, and just for us.
+          </p>
+          <Link
+            href="/new"
+            className="mt-9 inline-flex items-center justify-center whitespace-nowrap rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 font-medium shadow-md shadow-orange-200/50 bg-gradient-to-br from-orange-500 to-pink-400 text-white hover:opacity-90 px-8 py-3 text-lg"
+          >
+            Generate Invoice
+          </Link>
         </div>
-        <div className="mb-10">
+
+        {/* Demo preview */}
+        <div className="w-full mb-16 rounded-[2rem] bg-white/60 p-4 md:p-8 shadow-sm">
           <DemoPreview />
         </div>
-        <p className="font-medium text-xl md:text-3xl border-t border-gray-300 border-b border-dashed md:py-6 py-3 px-7 text-neutral-700 text-center">
-          Here&apos;s why you&apos;ll love our Free Invoice Generator
+
+        {/* Features */}
+        <p className="font-medium text-2xl md:text-3xl text-neutral-700 text-center mb-10">
+          Why this makes invoicing easier for the team
         </p>
-        <div className="grid sm:grid-cols-2 relative">
-          <Plus className="text-orange-500 group-hover:text-orange-500 w-7 h-7 absolute top-0 -translate-x-1/2 -translate-y-1/2 left-0" />
-          <Plus className="text-orange-500 group-hover:text-orange-500 w-7 h-7 absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2" />
-          <div className="border-r border-b border-dashed p-7 border-gray-300 flex justify-center flex-col items-center">
-            <p className="border flex justify-center items-center w-11 h-11 border-dashed rounded-lg text-2xl mb-5 border-gray-300 bg-gradient-to-br from-orange-100 to-pink-100">
-              <Rocket />
-            </p>
-            <p className="font-bold text-xl">Fast & Easy</p>
-            <p className="text-neutral-500 mt-1 text-center">
-              Simply fill in the blanks and generate professional invoices in
-              seconds
-            </p>
-          </div>
-          <div className="border-b border-dashed flex justify-center flex-col items-center p-7 border-gray-300">
-            <p className="border flex justify-center items-center w-11 h-11 border-dashed rounded-lg text-2xl mb-5 border-gray-300 bg-gradient-to-br from-orange-100 to-pink-100">
-              <Infinity />
-            </p>
-            <p className="font-bold text-xl">Free & Unlimited</p>
-            <p className="text-neutral-500 mt-1 text-center">
-              Create as many invoices as you need, forever, at no cost.
-            </p>
-          </div>
-          <div className="border-r border-b border-dashed flex justify-center flex-col items-center p-7 border-gray-300">
-            <p className="border flex justify-center items-center w-11 h-11 border-dashed rounded-lg text-2xl mb-5 border-gray-300 bg-gradient-to-br from-orange-100 to-pink-100">
-              <NotebookText />
-            </p>
-            <p className="font-bold text-xl">Beautiful Templates</p>
-            <p className="text-neutral-500 mt-1 text-center">
-              Choose from a variety of modern and customizable invoice
-              templates.
-            </p>
-          </div>
-          <div className="border-b border-gray-300 border-dashed flex justify-center flex-col items-center p-7">
-            <p className="border flex justify-center items-center w-11 h-11 border-dashed rounded-lg text-2xl mb-5 border-gray-300 bg-gradient-to-br from-orange-100 to-pink-100">
-              <Receipt />
-            </p>
-            <p className="font-bold text-xl">Get Paid Faster</p>
-            <p className="text-neutral-500 mt-1 text-center">
-              Send invoices electronically with secure payment links for faster
-              client payments.
-            </p>
-          </div>
-          <div className="border-r border-gray-300 border-b border-dashed flex justify-center flex-col items-center p-7">
-            <p className="border flex justify-center items-center w-11 h-11 border-dashed rounded-lg text-2xl mb-5 border-gray-300 bg-gradient-to-br from-orange-100 to-pink-100">
-              <Hourglass />
-            </p>
-            <p className="font-bold text-xl">Save Time & Money</p>
-            <p className="text-neutral-500 mt-1 text-center">
-              Ditch the spreadsheets and expensive invoicing software.
-            </p>
-          </div>
-          <div className="border-b border-dashed p-7 border-gray-300 flex justify-center flex-col items-center">
-            <p className="border flex justify-center items-center w-11 h-11 border-dashed rounded-lg text-2xl mb-5 border-gray-300 bg-gradient-to-br from-orange-100 to-pink-100">
-              <CodeXml />
-            </p>
-            <p className="font-bold text-xl">Free & Open Source</p>
-            <p className="text-neutral-500 mt-1 text-center">
-              Absolutely no cost, with the freedom to customize and adapt to
-              your needs.
-            </p>
-          </div>
+        <div className="grid sm:grid-cols-2 gap-5 w-full mb-16">
+          {features.map(({ icon: Icon, title, description }) => (
+            <div
+              key={title}
+              className="rounded-[1.75rem] bg-white/70 p-7 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="w-12 h-12 mb-4 rounded-2xl flex items-center justify-center bg-gradient-to-br from-orange-100 to-pink-100 text-orange-600">
+                <Icon className="w-6 h-6" />
+              </div>
+              <p className="font-bold text-xl">{title}</p>
+              <p className="text-neutral-500 mt-1">{description}</p>
+            </div>
+          ))}
         </div>
-        <div className="px-5 py-11 flex justify-center items-center border-b border-dashed border-gray-300">
-          <div className="flex justify-center rounded-2xl max-w-3xl border-dashed items-center px-4 py-10 w-full flex-col gap-4  bg-gradient-to-br from-orange-100 to-pink-100">
-            <p className="md:max-w-2xl text-center font-semibold text-xl text-black p-4 md:text-3xl text-balance">
-              Stop wasting time and start getting paid what you deserve. Try our
-              Free Invoice
+
+        {/* Bottom CTA */}
+        <div className="w-full pb-16">
+          <div className="flex flex-col items-center gap-4 rounded-[2.5rem] bg-gradient-to-br from-orange-100 to-pink-100 px-6 py-12 text-center">
+            <p className="font-semibold text-xl md:text-3xl text-black max-w-2xl text-balance">
+              Need to invoice a client? Generate it now — no spreadsheets
+              required.
             </p>
             <Link
               href="/new"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring font-medium disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-br from-orange-500 to-pink-400 text-white hover:bg-black/90 px-6 py-2 text-lg"
+              className="mt-2 inline-flex items-center justify-center whitespace-nowrap rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 font-medium shadow-md shadow-orange-200/50 bg-gradient-to-br from-orange-500 to-pink-400 text-white hover:opacity-90 px-8 py-3 text-lg"
             >
-              Generate Today!
+              Generate Today
             </Link>
           </div>
         </div>
