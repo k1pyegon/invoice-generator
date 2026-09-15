@@ -1,20 +1,21 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Document, Font, Page } from "@react-pdf/renderer";
-import { CheckCircle2, Download, LoaderIcon, SplineIcon } from "lucide-react";
-import { PdfDetails } from "../pdfDetails";
+import { Font } from "@react-pdf/renderer";
+import { CheckCircle2, Download, LoaderIcon } from "lucide-react";
 import { useData } from "@/app/hooks/useData";
-import { pdfContainers } from "@/lib/pdfStyles";
-import { saveAs } from "file-saver";
-import { pdf } from "@react-pdf/renderer";
-import { svgToDataUri } from "@/lib/svgToDataUri";
+import { useAuth } from "@/app/hooks/useAuth";
 import { useEffect, useState } from "react";
-import { currencyList } from "@/lib/currency";
+import { downloadInvoicePdf } from "@/lib/generateInvoicePdf";
+import { upsertProfile } from "@/lib/supabase/profiles";
+import { createInvoice } from "@/lib/supabase/invoices";
+import { SignInButton } from "@/app/component/auth/SignInButton";
+
 export const DownloadInvoiceButton = () => {
   const [status, setStatus] = useState<
     "downloaded" | "downloading" | "not-downloaded"
   >("not-downloaded");
+  const { user, status: authStatus } = useAuth();
   const {
     companyDetails,
     invoiceDetails,
@@ -31,6 +32,31 @@ export const DownloadInvoiceButton = () => {
     }
   }, [status]);
 
+  if (authStatus === "loading") {
+    return (
+      <div className="flex h-[calc(100vh-208px)] justify-center items-center">
+        <LoaderIcon className="h-6 w-6 animate-spin text-neutral-400" />
+      </div>
+    );
+  }
+
+  if (authStatus === "unauthenticated" || !user) {
+    return (
+      <div className="flex h-[calc(100vh-208px)] justify-center items-center">
+        <div>
+          <h1 className="text-5xl font-semibold pb-6">
+            Sign in to download
+          </h1>
+          <p className="text-neutral-500 text-xl pb-7">
+            Sign in with Google so we can remember your details and keep a
+            record of this invoice for you.
+          </p>
+          <SignInButton className="w-full h-12 rounded-lg text-lg" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-[calc(100vh-208px)] justify-center items-center">
       <div>
@@ -43,44 +69,27 @@ export const DownloadInvoiceButton = () => {
           onClick={async () => {
             try {
               setStatus("downloading");
-              const currencyDetails = currencyList.find(
-                (currencyDetail) =>
-                  currencyDetail.value.toLowerCase() ===
-                  invoiceDetails.currency.toLowerCase()
-              )?.details;
+              await downloadInvoicePdf({
+                companyDetails,
+                invoiceDetails,
+                invoiceTerms,
+                paymentDetails,
+                yourDetails,
+              });
+              setStatus("downloaded");
 
-              const defaultCurrency = currencyList.find(
-                (currencyDetail) =>
-                  currencyDetail.value.toLowerCase() === "USD".toLowerCase()
-              )?.details;
-
-              const data = await fetch(
-                `/flag/1x1/${
-                  currencyDetails?.iconName || defaultCurrency?.iconName
-                }.svg`
+              upsertProfile(user.id, { yourDetails, companyDetails }).catch(
+                (e) => console.error("Failed to save profile details:", e)
               );
-              const svgFlag = await data.text();
-              const countryImageUrl = await svgToDataUri(svgFlag);
-              if (countryImageUrl) {
-                const blob = await pdf(
-                  <Document>
-                    <Page size="A4" style={pdfContainers.page}>
-                      <PdfDetails
-                        companyDetails={companyDetails}
-                        invoiceDetails={invoiceDetails}
-                        invoiceTerms={invoiceTerms}
-                        paymentDetails={paymentDetails}
-                        yourDetails={yourDetails}
-                        countryImageUrl={countryImageUrl}
-                      />
-                    </Page>
-                  </Document>
-                ).toBlob();
-                saveAs(blob, "invoice.pdf");
-                setStatus("downloaded");
-              } else {
-                setStatus("not-downloaded");
-              }
+              createInvoice(user.id, {
+                yourDetails,
+                companyDetails,
+                invoiceDetails,
+                paymentDetails,
+                invoiceTerms,
+              }).catch((e) =>
+                console.error("Failed to save invoice history:", e)
+              );
             } catch (e) {
               console.error(e);
               setStatus("not-downloaded");
