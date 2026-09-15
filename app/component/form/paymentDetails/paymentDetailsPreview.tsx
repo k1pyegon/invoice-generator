@@ -13,6 +13,7 @@ export const PaymentDetailsPreview: React.FC<
   mobileMoneyProvider,
   mobileMoneyType,
   mobileMoneyNumber,
+  mobileMoneyAccountNumber,
   mobileMoneyName,
   currency = "USD",
   onClick,
@@ -123,6 +124,16 @@ export const PaymentDetailsPreview: React.FC<
                   {mobileMoneyNumber}
                 </p>
               </div>
+              {mobileMoneyType === "Paybill" && mobileMoneyAccountNumber && (
+                <div className="mb-2 grid grid-cols-2 items-center">
+                  <p className="truncate text-xs font-medium text-gray-500">
+                    Account Number
+                  </p>
+                  <p className="flex truncate text-xs font-medium text-gray-600">
+                    {mobileMoneyAccountNumber}
+                  </p>
+                </div>
+              )}
               {mobileMoneyName && (
                 <div className="mb-2 grid grid-cols-2 items-center">
                   <p className="truncate text-xs font-medium text-gray-500">

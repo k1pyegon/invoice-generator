@@ -35,6 +35,7 @@ export const useData = () => {
   const mobileMoneyProvider = useGetValue("mobileMoneyProvider");
   const mobileMoneyType = useGetValue("mobileMoneyType");
   const mobileMoneyNumber = useGetValue("mobileMoneyNumber");
+  const mobileMoneyAccountNumber = useGetValue("mobileMoneyAccountNumber");
   const mobileMoneyName = useGetValue("mobileMoneyName");
 
   const invoiceNumber = useGetValue("invoiceNo");
@@ -67,6 +68,7 @@ export const useData = () => {
     mobileMoneyProvider: mobileMoneyProvider,
     mobileMoneyType: mobileMoneyType,
     mobileMoneyNumber: mobileMoneyNumber,
+    mobileMoneyAccountNumber: mobileMoneyAccountNumber,
     mobileMoneyName: mobileMoneyName,
     currency
   };

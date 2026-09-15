@@ -45,6 +45,7 @@ const defaultValue = {
     mobileMoneyProvider: "",
     mobileMoneyType: "",
     mobileMoneyNumber: "",
+    mobileMoneyAccountNumber: "",
     mobileMoneyName: "",
     currency: "USD",
   },

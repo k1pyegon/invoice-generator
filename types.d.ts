@@ -52,6 +52,7 @@ interface PaymentDetails {
   mobileMoneyProvider?: string | null;
   mobileMoneyType?: string | null;
   mobileMoneyNumber?: string | null;
+  mobileMoneyAccountNumber?: string | null;
   mobileMoneyName?: string | null;
   currency?: string;
 }

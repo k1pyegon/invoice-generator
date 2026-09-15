@@ -18,6 +18,7 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
   mobileMoneyProvider,
   mobileMoneyType,
   mobileMoneyNumber,
+  mobileMoneyAccountNumber,
   mobileMoneyName,
   currency = "USD",
   countryImageUrl,
@@ -138,6 +139,16 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
                   {mobileMoneyNumber}
                 </Text>
               </View>
+              {mobileMoneyType === "Paybill" && mobileMoneyAccountNumber ? (
+                <View style={pdfUtils.flexRowItemCenter}>
+                  <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
+                    Account Number
+                  </Text>
+                  <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
+                    {mobileMoneyAccountNumber}
+                  </Text>
+                </View>
+              ) : undefined}
               {mobileMoneyName ? (
                 <View style={pdfUtils.flexRowItemCenter}>
                   <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>

@@ -8,8 +8,16 @@ const mobileMoneyTypesByProvider: Record<string, string[]> = {
   "Airtel Money": ["Paybill", "Till", "Phone"],
 };
 
+const mobileMoneyNumberLabels: Record<string, string> = {
+  Paybill: "Paybill Number",
+  Till: "Till Number",
+  Phone: "Phone Number",
+  "Pochi la Biashara": "Phone Number",
+};
+
 export const PaymentDetailsForm = () => {
   const mobileMoneyProvider = useGetValue("mobileMoneyProvider");
+  const mobileMoneyType = useGetValue("mobileMoneyType");
   const mobileMoneyTypes =
     mobileMoneyTypesByProvider[mobileMoneyProvider] ??
     mobileMoneyTypesByProvider["M-Pesa"];
@@ -69,10 +77,17 @@ export const PaymentDetailsForm = () => {
         }))}
       />
       <CustomTextInput
-        label="Number"
+        label={mobileMoneyNumberLabels[mobileMoneyType] ?? "Number"}
         placeholder="174379"
         variableName="mobileMoneyNumber"
       />
+      {mobileMoneyType === "Paybill" && (
+        <CustomTextInput
+          label="Account Number"
+          placeholder="INV-0021"
+          variableName="mobileMoneyAccountNumber"
+        />
+      )}
       <CustomTextInput
         label="Name"
         placeholder="Jambo Traders Ltd"
