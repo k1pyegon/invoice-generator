@@ -16,7 +16,9 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
   swiftCode,
   bankBranch,
   mobileMoneyProvider,
+  mobileMoneyType,
   mobileMoneyNumber,
+  mobileMoneyName,
   currency = "USD",
   countryImageUrl,
 }) => {
@@ -122,18 +124,30 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
             </View>
           ) : undefined}
         </View>
-        {mobileMoneyProvider && mobileMoneyNumber ? (
+        {mobileMoneyProvider && mobileMoneyType && mobileMoneyNumber ? (
           <>
             <Text style={{ paddingTop: 16, paddingBottom: 12, ...pdfTypography.title }}>
               Mobile Money
             </Text>
-            <View style={pdfUtils.flexRowItemCenter}>
-              <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
-                {mobileMoneyProvider}
-              </Text>
-              <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
-                {mobileMoneyNumber}
-              </Text>
+            <View style={{ flexDirection: "column", gap: 5 }}>
+              <View style={pdfUtils.flexRowItemCenter}>
+                <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
+                  {mobileMoneyProvider} {mobileMoneyType}
+                </Text>
+                <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
+                  {mobileMoneyNumber}
+                </Text>
+              </View>
+              {mobileMoneyName ? (
+                <View style={pdfUtils.flexRowItemCenter}>
+                  <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
+                    Name
+                  </Text>
+                  <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
+                    {mobileMoneyName}
+                  </Text>
+                </View>
+              ) : undefined}
             </View>
           </>
         ) : undefined}

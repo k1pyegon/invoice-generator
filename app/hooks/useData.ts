@@ -33,7 +33,9 @@ export const useData = () => {
   const swiftCode = useGetValue("swiftCode");
   const bankBranch = useGetValue("bankBranch");
   const mobileMoneyProvider = useGetValue("mobileMoneyProvider");
+  const mobileMoneyType = useGetValue("mobileMoneyType");
   const mobileMoneyNumber = useGetValue("mobileMoneyNumber");
+  const mobileMoneyName = useGetValue("mobileMoneyName");
 
   const invoiceNumber = useGetValue("invoiceNo");
   const issueDate = useGetValue("issueDate");
@@ -63,7 +65,9 @@ export const useData = () => {
     swiftCode: swiftCode,
     bankBranch: bankBranch,
     mobileMoneyProvider: mobileMoneyProvider,
+    mobileMoneyType: mobileMoneyType,
     mobileMoneyNumber: mobileMoneyNumber,
+    mobileMoneyName: mobileMoneyName,
     currency
   };
 

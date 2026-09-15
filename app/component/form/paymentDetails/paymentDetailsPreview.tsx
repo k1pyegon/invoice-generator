@@ -11,7 +11,9 @@ export const PaymentDetailsPreview: React.FC<
   swiftCode,
   bankBranch,
   mobileMoneyProvider,
+  mobileMoneyType,
   mobileMoneyNumber,
+  mobileMoneyName,
   currency = "USD",
   onClick,
 }) => {
@@ -107,7 +109,7 @@ export const PaymentDetailsPreview: React.FC<
             </div>
           )}
         </div>
-        {mobileMoneyProvider && mobileMoneyNumber && (
+        {mobileMoneyProvider && mobileMoneyType && mobileMoneyNumber && (
           <>
             <p className="text-[11px] text-neutral-400 font-medium uppercase mb-3 mt-4">
               Mobile Money
@@ -115,12 +117,22 @@ export const PaymentDetailsPreview: React.FC<
             <div className="space-y-1">
               <div className="mb-2 grid grid-cols-2 items-center">
                 <p className="truncate text-xs font-medium text-gray-500">
-                  {mobileMoneyProvider}
+                  {mobileMoneyProvider} {mobileMoneyType}
                 </p>
                 <p className="flex truncate text-xs font-medium text-gray-600">
                   {mobileMoneyNumber}
                 </p>
               </div>
+              {mobileMoneyName && (
+                <div className="mb-2 grid grid-cols-2 items-center">
+                  <p className="truncate text-xs font-medium text-gray-500">
+                    Name
+                  </p>
+                  <p className="flex truncate text-xs font-medium text-gray-600">
+                    {mobileMoneyName}
+                  </p>
+                </div>
+              )}
             </div>
           </>
         )}

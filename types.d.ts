@@ -50,7 +50,9 @@ interface PaymentDetails {
   swiftCode?: string | null;
   bankBranch?: string | null;
   mobileMoneyProvider?: string | null;
+  mobileMoneyType?: string | null;
   mobileMoneyNumber?: string | null;
+  mobileMoneyName?: string | null;
   currency?: string;
 }
 

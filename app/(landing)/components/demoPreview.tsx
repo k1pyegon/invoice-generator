@@ -43,7 +43,9 @@ const defaultValue = {
     swiftCode: "SAMPLEXX123",
     bankBranch: "",
     mobileMoneyProvider: "",
+    mobileMoneyType: "",
     mobileMoneyNumber: "",
+    mobileMoneyName: "",
     currency: "USD",
   },
   invoiceTerms: {
