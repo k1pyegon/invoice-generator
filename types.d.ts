@@ -48,7 +48,9 @@ interface PaymentDetails {
   accountName?: string | null;
   routingCode?: string | null;
   swiftCode?: string | null;
-  branch?: string | null;
+  bankBranch?: string | null;
+  mobileMoneyProvider?: string | null;
+  mobileMoneyNumber?: string | null;
   currency?: string;
 }
 

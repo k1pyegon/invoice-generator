@@ -9,7 +9,9 @@ export const PaymentDetailsPreview: React.FC<
   accountName,
   routingCode,
   swiftCode,
-  branch,
+  bankBranch,
+  mobileMoneyProvider,
+  mobileMoneyNumber,
   currency = "USD",
   onClick,
 }) => {
@@ -94,17 +96,34 @@ export const PaymentDetailsPreview: React.FC<
               </p>
             </div>
           )}
-          {branch && (
+          {bankBranch && (
             <div className="mb-2 grid grid-cols-2 items-center">
               <p className="truncate text-xs font-medium text-gray-500">
-                Branch
+                Bank Branch
               </p>
               <p className="flex truncate text-xs font-medium text-gray-600">
-                {branch}
+                {bankBranch}
               </p>
             </div>
           )}
         </div>
+        {mobileMoneyProvider && mobileMoneyNumber && (
+          <>
+            <p className="text-[11px] text-neutral-400 font-medium uppercase mb-3 mt-4">
+              Mobile Money
+            </p>
+            <div className="space-y-1">
+              <div className="mb-2 grid grid-cols-2 items-center">
+                <p className="truncate text-xs font-medium text-gray-500">
+                  {mobileMoneyProvider}
+                </p>
+                <p className="flex truncate text-xs font-medium text-gray-600">
+                  {mobileMoneyNumber}
+                </p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
       <div className="py-4 px-10">
         <p className="text-[11px] text-neutral-400 font-medium uppercase mb-3">

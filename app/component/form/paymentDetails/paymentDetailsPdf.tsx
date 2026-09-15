@@ -14,7 +14,9 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
   accountName,
   routingCode,
   swiftCode,
-  branch,
+  bankBranch,
+  mobileMoneyProvider,
+  mobileMoneyNumber,
   currency = "USD",
   countryImageUrl,
 }) => {
@@ -91,17 +93,17 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
               {swiftCode ? swiftCode : "-"}
             </Text>
           </View>
-          {branch ? (
+          {bankBranch ? (
             <View style={pdfUtils.flexRowItemCenter}>
-              <Text style={pdfTypography.paymentTitle}>Branch</Text>
+              <Text style={pdfTypography.paymentTitle}>Bank Branch</Text>
               <Text
                 style={{
                   flex: 1,
                   ...pdfTypography.itemDescription,
-                  paddingLeft: 48,
+                  paddingLeft: 34,
                 }}
               >
-                {branch}
+                {bankBranch}
               </Text>
             </View>
           ) : undefined}
@@ -120,6 +122,21 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
             </View>
           ) : undefined}
         </View>
+        {mobileMoneyProvider && mobileMoneyNumber ? (
+          <>
+            <Text style={{ paddingTop: 16, paddingBottom: 12, ...pdfTypography.title }}>
+              Mobile Money
+            </Text>
+            <View style={pdfUtils.flexRowItemCenter}>
+              <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
+                {mobileMoneyProvider}
+              </Text>
+              <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
+                {mobileMoneyNumber}
+              </Text>
+            </View>
+          </>
+        ) : undefined}
       </View>
       <View
         style={{
