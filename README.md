@@ -1,6 +1,6 @@
-# Barnview Invoice Generator
+# Agrisync Lab Invoice Generator
 
-Internal invoice generation tool for Barnview. Create professional, customized invoices quickly and easily to ensure you get paid on time, every time.
+Agrisync Lab's invoice tool, built to help farmers get paid faster and keep their books in order.
 
 ## ⛰️ Preview
 

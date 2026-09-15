@@ -1,6 +1,6 @@
 {
-    "name": "Barnview Invoice Generator",
-    "short_name": "Barnview Invoice",
+    "name": "Agrisync Lab Invoice Generator",
+    "short_name": "Agrisync Lab",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
