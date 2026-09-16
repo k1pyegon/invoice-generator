@@ -16,13 +16,13 @@ const Home = () => {
       <div className="relative max-w-4xl w-full mx-auto flex flex-col items-center px-4">
         {/* Hero */}
         <div className="flex flex-col items-center text-center pt-16 pb-14">
-          <div className="rounded-[2rem] p-2 bg-white/70 shadow-sm mb-8">
+          <div className="mb-8">
             <Image
-              src="/android-chrome-512x512.png"
-              width={88}
-              height={88}
-              className="rounded-3xl"
-              alt="logo"
+              src="/logo.png"
+              width={691}
+              height={329}
+              className="h-16 w-auto"
+              alt="Agrisync Lab"
             />
           </div>
           <h1 className="font-semibold text-3xl md:text-6xl text-balance text-black leading-tight">
