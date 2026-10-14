@@ -19,6 +19,11 @@ export const pdfTypography = StyleSheet.create({
         fontSize: 12,
         fontWeight: "medium",
     },
+    businessName: {
+        fontSize: 14,
+        fontWeight: 'medium',
+        marginBottom: 2
+    },
     text2xl: {
         fontSize: 24,
         fontWeight: 'medium'

@@ -7,7 +7,43 @@ import { Plus, Trash2 } from "lucide-react";
 import CustomNumberInput from "@/app/component/ui/customNumberInput";
 import { useGetValue } from "@/app/hooks/useGetValue";
 import { Controller } from "react-hook-form";
-import { getItemValue } from "@/lib/getInitialValue";
+import { getInitialValue, getItemValue } from "@/lib/getInitialValue";
+
+// Long enough for a short summary, short enough to keep the PDF on one page.
+const DESCRIPTION_MAX_LENGTH = 300;
+
+const CustomTextArea = ({
+  placeholder,
+  variableName,
+  maxLength,
+}: {
+  placeholder: string;
+  variableName: string;
+  maxLength: number;
+}) => (
+  <Controller
+    render={({ field: { onChange, value } }) => (
+      <div className="relative">
+        <textarea
+          rows={3}
+          value={value}
+          maxLength={maxLength}
+          placeholder={placeholder}
+          onChange={(e) => {
+            localStorage.setItem(variableName, e.target.value);
+            onChange(e.target.value);
+          }}
+          className="peer block w-full resize-none border-0 border-b border-dashed border-gray-300 p-0 pb-1.5 text-gray-900 focus:border-green-700 focus:ring-0 sm:text-sm sm:leading-6 placeholder:text-neutral-700/40 placeholder:font-medium caret-green-700"
+        />
+        <p className="pt-1 text-right text-xs text-neutral-400">
+          {(value ?? "").length}/{maxLength}
+        </p>
+      </div>
+    )}
+    name={variableName}
+    defaultValue={getInitialValue(variableName)}
+  />
+);
 
 export const InvoiceDetailsForm = () => {
   const value = useGetValue("currency", "USD");
@@ -26,6 +62,16 @@ export const InvoiceDetailsForm = () => {
                 Select an invoice currency
               </p>
               <CurrencyInput />
+            </div>
+            <div>
+              <p className="pt-3 pb-2 font-medium text-sm text-neutral-500">
+                Description (optional)
+              </p>
+              <CustomTextArea
+                placeholder="Website redesign and one year of hosting for Patanishi Trainers"
+                variableName="description"
+                maxLength={DESCRIPTION_MAX_LENGTH}
+              />
             </div>
             <div>
               <p className="py-3 font-medium text-sm text-neutral-500">Items</p>

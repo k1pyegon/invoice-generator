@@ -25,7 +25,9 @@ export const YourDetailsPDF: React.FC<YourDetails> = ({
         <Image style={{ height: 40, borderRadius: 6 }} src={yourLogo} />
       )}
     </View>
-    {yourName && <Text style={pdfTypography.text2xl}>{yourName}</Text>}
+    {yourName && (
+      <Text style={pdfTypography.businessName}>{yourName}</Text>
+    )}
     {yourEmail && (
       <Text style={{ ...pdfTypography.description, marginBottom: 12 }}>
         {yourEmail}

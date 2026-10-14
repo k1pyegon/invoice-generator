@@ -21,6 +21,7 @@ export const useData = () => {
   const companyTaxId = useGetValue("companyTaxId");
   const companyZip = useGetValue("companyZip");
 
+  const description = useGetValue("description");
   const note = useGetValue("note");
   const discount = useGetValue("discount");
   const taxRate = useGetValue("tax");
@@ -51,6 +52,7 @@ export const useData = () => {
   };
 
   const invoiceDetails = {
+    description,
     note,
     discount,
     taxRate,
