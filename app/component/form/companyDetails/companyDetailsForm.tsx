@@ -1,6 +1,5 @@
 import CustomTextInput from "@/app/component/ui/customTextInput";
 import CustomNumberInput from "@/app/component/ui/customNumberInput";
-import ImageInput from "@/app/component/ui/imageInput";
 
 export const CompanyDetailsForm = () => (
   <div className="pt-24">
@@ -19,7 +18,6 @@ export const CompanyDetailsForm = () => (
       placeholder="Jambo Traders Ltd"
       variableName="companyName"
     />
-    <ImageInput label="Logo" variableName="companyLogo" />
     <CustomTextInput
       label="Address"
       placeholder="Kimathi Street, 12"

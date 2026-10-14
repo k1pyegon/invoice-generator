@@ -17,10 +17,10 @@ export const useData = () => {
   const companyCity = useGetValue("companyCity");
   const companyState = useGetValue("companyState");
   const companyCountry = useGetValue("companyCountry");
-  const companyLogo = useGetValue("companyLogo");
   const companyTaxId = useGetValue("companyTaxId");
   const companyZip = useGetValue("companyZip");
 
+  const description = useGetValue("description");
   const note = useGetValue("note");
   const discount = useGetValue("discount");
   const taxRate = useGetValue("tax");
@@ -51,6 +51,7 @@ export const useData = () => {
   };
 
   const invoiceDetails = {
+    description,
     note,
     discount,
     taxRate,
@@ -91,7 +92,6 @@ export const useData = () => {
     companyCity,
     companyState,
     companyCountry,
-    companyLogo,
     companyTaxId,
     companyZip,
     email,

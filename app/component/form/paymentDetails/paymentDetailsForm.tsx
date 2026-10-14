@@ -24,7 +24,13 @@ export const PaymentDetailsForm = () => {
 
   return (
     <div className="pt-24">
-      <p className="text-2xl font-semibold pb-3">Payment Details</p>
+      <p className="text-2xl font-semibold pb-1">Payment Details</p>
+      <p className="pb-3 text-sm text-neutral-500">
+        Add bank details, mobile money, or both.
+      </p>
+      <p className="pb-2 text-sm font-medium text-neutral-500">
+        Bank details (optional)
+      </p>
       <CustomTextInput
         label="Bank name"
         placeholder="Equity Bank"
@@ -56,7 +62,7 @@ export const PaymentDetailsForm = () => {
         variableName="swiftCode"
       />
       <p className="pb-2 pt-6 text-sm font-medium text-neutral-500">
-        Mobile money (alternative)
+        Mobile money (optional)
       </p>
       <CustomSelectInput
         label="Provider"

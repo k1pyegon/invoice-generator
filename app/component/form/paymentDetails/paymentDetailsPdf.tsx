@@ -2,11 +2,44 @@
 import React from "react";
 import { Image, Text, View } from "@react-pdf/renderer";
 import { currencyList } from "@/lib/currency";
-import { pdfTypography, pdfUtils } from "@/lib/pdfStyles";
+import { pdfTypography } from "@/lib/pdfStyles";
 
 interface PaymentDetailsPdfProps extends PaymentDetails {
   countryImageUrl: string;
 }
+
+const PaymentRow = ({
+  label,
+  value,
+  compact,
+}: {
+  label: string;
+  value: string;
+  compact: boolean;
+}) => (
+  <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+    <Text
+      hyphenationCallback={(word) => [word]}
+      style={{
+        ...pdfTypography.paymentTitle,
+        width: compact ? 88 : 110,
+        paddingRight: 6,
+        ...(compact && { fontSize: 10 }),
+      }}
+    >
+      {label}
+    </Text>
+    <Text
+      style={{
+        flex: 1,
+        ...pdfTypography.itemDescription,
+        ...(compact && { fontSize: 10 }),
+      }}
+    >
+      {value}
+    </Text>
+  </View>
+);
 
 export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
   bankName,
@@ -28,155 +61,79 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
       currencyDetail.value.toLowerCase() === currency.toLowerCase()
   )?.details;
 
+  const bankRows = [
+    { label: "Bank Name", value: bankName },
+    { label: "Account Number", value: accountNumber },
+    { label: "Account Name", value: accountName },
+    { label: "Swift Code", value: swiftCode },
+    { label: "Bank Branch", value: bankBranch },
+    { label: "Routing Code", value: routingCode },
+  ].filter((row) => !!row.value);
+
+  const mobileMoneyRows =
+    mobileMoneyProvider && mobileMoneyType && mobileMoneyNumber
+      ? [
+          {
+            label: `${mobileMoneyProvider} ${mobileMoneyType}`,
+            value: mobileMoneyNumber,
+          },
+          {
+            label: "Account Number",
+            value:
+              mobileMoneyType === "Paybill" ? mobileMoneyAccountNumber : "",
+          },
+          { label: "Name", value: mobileMoneyName },
+        ].filter((row) => !!row.value)
+      : [];
+
+  const sections = [
+    { title: "Bank Details", rows: bankRows },
+    { title: "Mobile Money", rows: mobileMoneyRows },
+  ].filter((section) => section.rows.length > 0);
+
+  // With both bank and mobile money, three columns sit side by side so the
+  // payment block stays short enough to fit on the first page.
+  const compact = sections.length > 1;
+  const columnStyle = (index: number) => ({
+    flex: 1,
+    paddingLeft: index === 0 ? 40 : compact ? 16 : 40,
+    paddingRight: compact ? 8 : 12,
+    paddingVertical: 16,
+    flexDirection: "column" as const,
+  });
+
   return (
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
-      <View
-        style={{
-          flex: 1,
-          paddingLeft: 40,
-          paddingRight: 12,
-          paddingVertical: 16,
-          flexDirection: "column",
-        }}
-      >
-        <Text style={{ paddingBottom: 12, ...pdfTypography.title }}>
-          Bank Details
-        </Text>
-        <View style={{ flexDirection: "column", gap: 5 }}>
-          <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Bank Name</Text>
-            <Text
-              style={{
-                flex: 1,
-                ...pdfTypography.itemDescription,
-                paddingLeft: 44.5,
-              }}
-            >
-              {bankName ? bankName : "-"}
-            </Text>
+    <View wrap={false} style={{ display: "flex", flexDirection: "row" }}>
+      {sections.map((section, index) => (
+        <View key={section.title} style={columnStyle(index)}>
+          <Text style={{ paddingBottom: 12, ...pdfTypography.title }}>
+            {section.title}
+          </Text>
+          <View style={{ flexDirection: "column", gap: 5 }}>
+            {section.rows.map((row) => (
+              <PaymentRow
+                key={row.label}
+                label={row.label}
+                value={row.value as string}
+                compact={compact}
+              />
+            ))}
           </View>
-          <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Account Number</Text>
-            <Text
-              style={{
-                flex: 1,
-                ...pdfTypography.itemDescription,
-                paddingLeft: 14,
-              }}
-            >
-              {accountNumber ? accountNumber : "-"}
-            </Text>
-          </View>
-          <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Account Name</Text>
-            <Text
-              style={{
-                flex: 1,
-                ...pdfTypography.itemDescription,
-                paddingLeft: 26,
-              }}
-            >
-              {accountName ? accountName : "-"}
-            </Text>
-          </View>
-          <View style={pdfUtils.flexRowItemCenter}>
-            <Text style={pdfTypography.paymentTitle}>Swift Code</Text>
-            <Text
-              style={{
-                flex: 1,
-                ...pdfTypography.itemDescription,
-                paddingLeft: 45,
-              }}
-            >
-              {swiftCode ? swiftCode : "-"}
-            </Text>
-          </View>
-          {bankBranch ? (
-            <View style={pdfUtils.flexRowItemCenter}>
-              <Text style={pdfTypography.paymentTitle}>Bank Branch</Text>
-              <Text
-                style={{
-                  flex: 1,
-                  ...pdfTypography.itemDescription,
-                  paddingLeft: 34,
-                }}
-              >
-                {bankBranch}
-              </Text>
-            </View>
-          ) : undefined}
-          {routingCode ? (
-            <View style={pdfUtils.flexRowItemCenter}>
-              <Text style={pdfTypography.paymentTitle}>Routing Code</Text>
-              <Text
-                style={{
-                  flex: 1,
-                  ...pdfTypography.itemDescription,
-                  paddingLeft: 32,
-                }}
-              >
-                {routingCode}
-              </Text>
-            </View>
-          ) : undefined}
         </View>
-        {mobileMoneyProvider && mobileMoneyType && mobileMoneyNumber ? (
-          <>
-            <Text style={{ paddingTop: 16, paddingBottom: 12, ...pdfTypography.title }}>
-              Mobile Money
-            </Text>
-            <View style={{ flexDirection: "column", gap: 5 }}>
-              <View style={pdfUtils.flexRowItemCenter}>
-                <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
-                  {mobileMoneyProvider} {mobileMoneyType}
-                </Text>
-                <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
-                  {mobileMoneyNumber}
-                </Text>
-              </View>
-              {mobileMoneyType === "Paybill" && mobileMoneyAccountNumber ? (
-                <View style={pdfUtils.flexRowItemCenter}>
-                  <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
-                    Account Number
-                  </Text>
-                  <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
-                    {mobileMoneyAccountNumber}
-                  </Text>
-                </View>
-              ) : undefined}
-              {mobileMoneyName ? (
-                <View style={pdfUtils.flexRowItemCenter}>
-                  <Text style={{ ...pdfTypography.paymentTitle, width: 100 }}>
-                    Name
-                  </Text>
-                  <Text style={{ flex: 1, ...pdfTypography.itemDescription }}>
-                    {mobileMoneyName}
-                  </Text>
-                </View>
-              ) : undefined}
-            </View>
-          </>
-        ) : undefined}
-      </View>
+      ))}
       <View
         style={{
-          flex: 1,
-          paddingLeft: 40,
-          paddingRight: 12,
-          paddingVertical: 16,
-          flexDirection: "column",
+          ...columnStyle(sections.length),
+          ...(compact && { flex: 0.8 }),
         }}
       >
         <Text style={{ ...pdfTypography.title, paddingBottom: 12 }}>
           Payable in
         </Text>
         {currencyDetails && (
-          <View style={{ ...pdfUtils.flexRowItemCenter, gap: 8 }}>
+          <View
+            style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
+          >
             <Image
               src={countryImageUrl}
               style={{
@@ -187,7 +144,7 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
                 objectFit: "cover",
               }}
             />
-            <View>
+            <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 14, fontWeight: "medium" }}>
                 {currencyDetails.currencyName}
               </Text>
@@ -199,6 +156,7 @@ export const PaymentDetailsPdf: React.FC<PaymentDetailsPdfProps> = ({
           </View>
         )}
       </View>
+      {sections.length === 0 && <View style={{ flex: 1 }} />}
     </View>
   );
 };

@@ -5,7 +5,15 @@ import { ChevronDown } from "lucide-react";
 
 export const InvoiceDetailsPreview: React.FC<
   InvoiceItemDetails & { onClick?: (step: string) => void }
-> = ({ note, discount, taxRate, items, currency = "USD", onClick }) => {
+> = ({
+  description,
+  note,
+  discount,
+  taxRate,
+  items,
+  currency = "USD",
+  onClick,
+}) => {
   const currencyType = currency;
   const currencyDetails = currencyList.find(
     (currency) => currency.value.toLowerCase() === currencyType.toLowerCase()
@@ -28,10 +36,20 @@ export const InvoiceDetailsPreview: React.FC<
           <ChevronDown className="animate-pulse w-5 h-5 text-green-700 -rotate-45 group-hover:block hidden absolute bottom-0 right-0 " />
         </>
       )}
+      {description && (
+        <div className="px-10 pt-4">
+          <p className="text-[11px] text-neutral-400 font-medium uppercase pb-1">
+            Description
+          </p>
+          <p className="text-xs font-medium text-gray-600 whitespace-pre-line break-words">
+            {description}
+          </p>
+        </div>
+      )}
       <div className="grid grid-cols-2 items-center">
         <div className="py-4 px-10">
           <p className="text-[11px] text-neutral-400 font-medium uppercase">
-            Description
+            Item
           </p>
         </div>
         <div className="py-4 px-10 grid grid-cols-3 items-center">

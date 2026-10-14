@@ -23,6 +23,7 @@ interface YourDetails {
 }
 
 interface InvoiceItemDetails {
+  description?: string | null;
   note?: string | null;
   discount?: string | null;
   taxRate?: string | null;
