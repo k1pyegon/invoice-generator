@@ -26,7 +26,9 @@ export const YourDetailsPDF: React.FC<YourDetails> = ({
       )}
     </View>
     {yourName && (
-      <Text style={pdfTypography.businessName}>{yourName}</Text>
+      <Text
+        hyphenationCallback={(word) => [word]}
+        style={pdfTypography.businessName}>{yourName}</Text>
     )}
     {yourEmail && (
       <Text style={{ ...pdfTypography.description, marginBottom: 12 }}>

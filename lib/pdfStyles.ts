@@ -20,7 +20,7 @@ export const pdfTypography = StyleSheet.create({
         fontWeight: "medium",
     },
     businessName: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'medium',
         marginBottom: 2
     },

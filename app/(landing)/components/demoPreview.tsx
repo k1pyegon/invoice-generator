@@ -19,7 +19,6 @@ const defaultValue = {
     companyCity: "Mountain View",
     companyState: "CA",
     companyCountry: "USA",
-    companyLogo: "/android-chrome-192x192.png",
     companyTaxId: "",
     companyZip: "94043",
     email: "billing@acme.example",

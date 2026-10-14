@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React from "react";
@@ -10,7 +9,6 @@ export const CompanyDetailsPreview: React.FC<CompanyDetails> = ({
   companyCity,
   companyState,
   companyCountry,
-  companyLogo,
   companyTaxId,
   companyZip,
 }) => (
@@ -18,13 +16,6 @@ export const CompanyDetailsPreview: React.FC<CompanyDetails> = ({
     <p className="text-[11px] text-neutral-400 font-semibold uppercase pb-3.5">
       To
     </p>
-    <div className="h-10 mb-3">
-      {companyLogo ? (
-        <img src={companyLogo} alt="Company Logo" className="h-10 rounded-md" />
-      ) : (
-        <div className="rounded-full bg-neutral-100 h-10 w-10 animate-pulse" />
-      )}
-    </div>
     {companyName ? (
       <p className="text-sm font-medium">{companyName}</p>
     ) : (

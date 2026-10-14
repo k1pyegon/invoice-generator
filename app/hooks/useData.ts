@@ -17,7 +17,6 @@ export const useData = () => {
   const companyCity = useGetValue("companyCity");
   const companyState = useGetValue("companyState");
   const companyCountry = useGetValue("companyCountry");
-  const companyLogo = useGetValue("companyLogo");
   const companyTaxId = useGetValue("companyTaxId");
   const companyZip = useGetValue("companyZip");
 
@@ -93,7 +92,6 @@ export const useData = () => {
     companyCity,
     companyState,
     companyCountry,
-    companyLogo,
     companyTaxId,
     companyZip,
     email,
