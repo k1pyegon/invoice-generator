@@ -47,7 +47,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
       {items.map(({ itemDescription, amount, qty }, index) => {
         const containerStyle = {
           marginHorizontal: 40,
-          paddingVertical: 14,
+          paddingVertical: 10,
           ...pdfUtils.borderBottom,
           ...pdfUtils.flexRowItemCenter,
         };
@@ -104,7 +104,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
           <View
             style={{
               marginHorizontal: 40,
-              paddingVertical: 14,
+              paddingVertical: 10,
               ...pdfUtils.flexRowItemCenter,
               ...pdfUtils.borderBottom,
             }}
@@ -127,7 +127,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
             <View
               style={{
                 marginHorizontal: 40,
-                paddingVertical: 14,
+                paddingVertical: 10,
                 ...pdfUtils.flexRowItemCenter,
                 ...pdfUtils.borderBottom,
               }}
@@ -151,7 +151,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
             <View
               style={{
                 marginHorizontal: 40,
-                paddingVertical: 14,
+                paddingVertical: 10,
                 ...pdfUtils.flexRowItemCenter,
                 ...pdfUtils.borderBottom,
               }}
@@ -174,7 +174,7 @@ export const InvoiceDetailsPdf: React.FC<InvoiceItemDetails> = ({
           <View
             style={{
               marginHorizontal: 40,
-              paddingVertical: 14,
+              paddingVertical: 10,
               ...pdfUtils.flexRowItemCenter,
             }}
           >
